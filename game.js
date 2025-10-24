@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerNameInput = document.getElementById('playerName');
     const saveScoreBtn = document.getElementById('saveScoreBtn');
     const highScoreListEl = document.getElementById('highScoreList');
+    const gameOverModal = document.getElementById('gameOverModal');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+
+    const touchLeft = document.getElementById('touch-left');
+    const touchRight = document.getElementById('touch-right');
+    const touchShoot = document.getElementById('touch-shoot');
 
     let game = {
         paused: false,
@@ -323,8 +329,14 @@ document.addEventListener('DOMContentLoaded', () => {
         finalTimeEl.textContent = timeTaken;
         
         setTimeout(() => {
-            highScoreModal.style.display = 'block';
-            checkHighScore(game.score);
+            const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+            const lowestHighScore = highScores.length < 5 ? 0 : highScores[highScores.length - 1].score;
+
+            if (game.score > lowestHighScore) {
+                highScoreModal.style.display = 'block';
+            } else {
+                gameOverModal.style.display = 'block';
+            }
         }, 1000);
     }
 
@@ -351,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem('highScores', JSON.stringify(highScores));
         highScoreModal.style.display = 'none';
+        gameOverModal.style.display = 'block';
         displayHighScores();
     }
 
@@ -361,6 +374,28 @@ document.addEventListener('DOMContentLoaded', () => {
             .join('');
     }
 
+    function resetGame() {
+        player = new Player();
+        projectiles = [];
+        grids = [new Grid()];
+        alienProjectiles = [];
+        particles = [];
+        game = {
+            paused: false,
+            gameOver: false,
+            score: 0,
+            level: 1,
+            startTime: Date.now(),
+            endTime: null
+        };
+        scoreEl.textContent = game.score;
+        levelEl.textContent = game.level;
+        gameOverModal.style.display = 'none';
+        highScoreModal.style.display = 'none';
+        animate();
+    }
+
+    playAgainBtn.addEventListener('click', resetGame);
     saveScoreBtn.addEventListener('click', saveHighScore);
 
     window.addEventListener('keydown', ({ key }) => {
@@ -409,6 +444,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
     });
+
+    // Touch controls
+    touchLeft.addEventListener('touchstart', () => keys.left.pressed = true);
+    touchLeft.addEventListener('touchend', () => keys.left.pressed = false);
+    touchRight.addEventListener('touchstart', () => keys.right.pressed = true);
+    touchRight.addEventListener('touchend', () => keys.right.pressed = false);
+    touchShoot.addEventListener('touchstart', () => {
+        if (!keys.space.pressed) {
+            projectiles.push(new Projectile({
+                position: {
+                    x: player.position.x + player.width / 2 - 5,
+                    y: player.position.y
+                },
+                velocity: { x: 0, y: -10 },
+                emoji: '💥'
+            }));
+            keys.space.pressed = true;
+        }
+    });
+    touchShoot.addEventListener('touchend', () => keys.space.pressed = false);
+
 
     createStars();
     displayHighScores();
