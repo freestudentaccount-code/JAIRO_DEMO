@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const touchLeft = document.getElementById('touch-left');
     const touchRight = document.getElementById('touch-right');
     const touchShoot = document.getElementById('touch-shoot');
+    const startScreen = document.getElementById('startScreen');
+    const kickStartBtn = document.getElementById('kickStartBtn');
 
     const synth = new Tone.Synth().toDestination();
     const metalSynth = new Tone.MetalSynth().toDestination();
@@ -66,20 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let audioStarted = false;
     let gameStarted = false;
-    function startAudio() {
+    
+    function startGame() {
         if (!audioStarted) {
             Tone.start();
             audioStarted = true;
         }
         if (!gameStarted) {
-            setTimeout(() => playWelcomeSound(), 500); // Small delay for better timing
+            playWelcomeSound();
+            startScreen.style.display = 'none';
+            animate();
             gameStarted = true;
         }
-        document.body.removeEventListener('touchstart', startAudio);
-        document.body.removeEventListener('click', startAudio);
     }
-    document.body.addEventListener('touchstart', startAudio);
-    document.body.addEventListener('click', startAudio);
+
+    kickStartBtn.addEventListener('click', startGame);
+    kickStartBtn.addEventListener('touchstart', startGame);
 
     let game = {
         paused: false,
@@ -455,6 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
         levelEl.textContent = game.level;
         gameOverModal.style.display = 'none';
         highScoreModal.style.display = 'none';
+        startScreen.style.display = 'none';
         animate();
     }
 
@@ -551,5 +556,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createStars();
     displayHighScores();
-    animate();
+    // Don't start the game automatically - wait for kick button
 });

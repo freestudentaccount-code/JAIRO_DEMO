@@ -244,3 +244,28 @@ The user wants a Spanish greeting when the game starts. This adds a welcoming to
 feat: Add Spanish "Hola" greeting on game start
 
 Plays a Spanish "Hola" greeting with musical qualities when the game is first started by the user.
+
+## Date: 2025-10-24T12:55:00Z
+**Requestor:** jasmoone
+**Prompt:** Add a "Kick here to start game", then you can sing Hola
+
+**Reasoning:**
+The user wants a dedicated start button that says "Kick here to start game" before the game begins, and then the Spanish "Hola" greeting should play when this button is clicked. This provides a clearer game entry point with an animated, eye-catching button.
+
+**Changed:**
+- Updated version number to v1.1.1 in `index.html`
+- In `index.html`, added a start screen overlay with a "Kick here to start game" button
+- In `style.css`, added styling for the start screen and kick button with animated gradient background and bounce effects
+- In `game.js`, modified the game initialization to show the start screen first, then play "Hola" and start the game when the kick button is pressed
+- The game no longer auto-starts - it waits for the kick button interaction
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\style.css`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: Add animated kick start button with Hola greeting
+
+Adds a colorful animated "Kick here to start game" button that plays the Spanish "Hola" greeting when clicked to begin the game.
