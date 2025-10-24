@@ -86,3 +86,24 @@ This change adds a condition to end the game if the aliens reach the bottom of t
 feat: End game when aliens reach bottom
 
 Adds game over condition for when aliens reach the bottom of the screen.
+
+## Date: 2025-10-24T12:20:00Z
+**Requestor:** jasmoone
+**Prompt:** For my sake while developing, can we include a version in the lower right hand corner of the screen so I know that the update? Is active.
+
+**Reasoning:**
+This change adds a version number to the bottom right corner of the screen. This will help the user confirm that they are running the latest version of the game and that their changes have been applied.
+
+**Changed:**
+- Added a `div` with the id `version` to `index.html` to display the version number.
+- Added CSS in `style.css` to position the version number in the lower right corner.
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\style.css`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: Add version number to screen
+
+Displays the current version number in the lower right corner of the screen for development purposes.
