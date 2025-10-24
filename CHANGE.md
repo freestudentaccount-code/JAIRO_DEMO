@@ -107,3 +107,29 @@ This change adds a version number to the bottom right corner of the screen. This
 feat: Add version number to screen
 
 Displays the current version number in the lower right corner of the screen for development purposes.
+
+## Date: 2025-10-24T12:25:00Z
+**Requestor:** jasmoone
+**Prompt:** Add a synthesizer to go ahead and generate awesome sounds. Have something fun for lasers, explosions. Different aliens have different sounds when they get hit and make it fun when you complete a level, do a special sound or a voice that says next level when the game is over. Say game over when the new high score is reached. Say something like new high score.
+
+**Reasoning:**
+This change adds sound effects and voice synthesis to the game to make it more engaging. It uses the Tone.js library for synthesized sounds and the browser's built-in SpeechSynthesis API for voice.
+
+**Changed:**
+- Added the Tone.js library to `index.html`.
+- Updated the version number in `index.html`.
+- In `game.js`:
+    - Initialized Tone.js synthesizers.
+    - Created functions to play sounds for lasers, explosions, and alien hits.
+    - Created functions to speak "Next Level", "Game Over", and "New High Score".
+    - Integrated these sound and voice functions into the game logic (shooting, explosions, leveling up, game over).
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: Add sound effects and voice synthesis
+
+Integrates Tone.js for synthesized sound effects for lasers, explosions, and alien hits. Uses the SpeechSynthesis API for voice announcements for "Next Level", "Game Over", and "New High Score".

@@ -19,6 +19,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const touchRight = document.getElementById('touch-right');
     const touchShoot = document.getElementById('touch-shoot');
 
+    const synth = new Tone.Synth().toDestination();
+    const metalSynth = new Tone.MetalSynth().toDestination();
+    const membraneSynth = new Tone.MembraneSynth().toDestination();
+
+    function playLaserSound() {
+        synth.triggerAttackRelease("C4", "8n");
+    }
+
+    function playExplosionSound() {
+        metalSynth.triggerAttackRelease("C2", "8n");
+    }
+
+    function playAlienHitSound(alienType) {
+        const notes = {
+            '👾': 'E5',
+            '👽': 'F5',
+            '🛸': 'G5',
+            '🤖': 'A5'
+        };
+        synth.triggerAttackRelease(notes[alienType] || "B5", "16n");
+    }
+
+    function playNextLevelSound() {
+        const utterance = new SpeechSynthesisUtterance("Next Level");
+        speechSynthesis.speak(utterance);
+    }
+
+    function playGameOverSound() {
+        const utterance = new SpeechSynthesisUtterance("Game Over");
+        speechSynthesis.speak(utterance);
+    }
+
+    function playNewHighScoreSound() {
+        const utterance = new SpeechSynthesisUtterance("New High Score");
+        speechSynthesis.speak(utterance);
+    }
+
     let game = {
         paused: false,
         gameOver: false,
@@ -273,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (alienFound && projectileFound) {
                                 createParticles({ object: alien, emoji: '💥' });
+                                playAlienHitSound(alien.emoji);
                                 grid.aliens.splice(i, 1);
                                 projectiles.splice(j, 1);
                                 game.score += 100;
@@ -287,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     grids.splice(gridIndex, 1);
                                     game.level++;
                                     levelEl.textContent = game.level;
+                                    playNextLevelSound();
                                     grids.push(new Grid());
                                 }
                             }
@@ -313,6 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     alienProjectiles.splice(i, 1);
                     createParticles({ object: player, emoji: '🔥' });
+                    playExplosionSound();
                     endGame();
                 }, 0);
             }
@@ -338,8 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const lowestHighScore = highScores.length < 5 ? 0 : highScores[highScores.length - 1].score;
 
             if (game.score > 0 && game.score >= lowestHighScore) {
+                playNewHighScoreSound();
                 highScoreModal.style.display = 'block';
             } else {
+                playGameOverSound();
                 gameOverModal.style.display = 'block';
             }
         }, 1000);
@@ -406,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case ' ':
                 if (!keys.space.pressed) {
+                    playLaserSound();
                     projectiles.push(new Projectile({
                         position: {
                             x: player.position.x + player.width / 2 - 5,
@@ -448,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     touchRight.addEventListener('touchend', () => keys.right.pressed = false);
     touchShoot.addEventListener('touchstart', () => {
         if (!keys.space.pressed) {
+            playLaserSound();
             projectiles.push(new Projectile({
                 position: {
                     x: player.position.x + player.width / 2 - 5,
