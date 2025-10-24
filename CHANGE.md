@@ -67,3 +67,22 @@ The user is reporting that the "Play Again" option is not appearing. The previou
 fix: Ensure play again option is always available
 
 Fixes a bug where the "Play Again" button would not appear if the player did not achieve a high score. The game over screen is now correctly displayed when the score is not a high score.
+
+## Date: 2025-10-24T12:15:00Z
+**Requestor:** jasmoone
+**Prompt:** When the aliens reach the bottom, the game level is over.
+
+**Reasoning:**
+This change adds a condition to end the game if the aliens reach the bottom of the screen. This is a standard feature in Space Invaders-style games and adds a sense of urgency for the player.
+
+**Changed:**
+- Added a check in `game.js` to determine if any alien has reached the bottom of the canvas. If so, the game ends.
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: End game when aliens reach bottom
+
+Adds game over condition for when aliens reach the bottom of the screen.

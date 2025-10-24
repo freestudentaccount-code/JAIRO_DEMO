@@ -254,6 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.aliens.forEach((alien, i) => {
                 alien.update({ velocity: grid.velocity });
 
+                // Check if aliens reach the bottom
+                if (alien.position.y + grid.position.y + alien.height >= canvas.height) {
+                    endGame();
+                }
+
                 // Collision detection: projectile vs alien
                 projectiles.forEach((projectile, j) => {
                     if (
