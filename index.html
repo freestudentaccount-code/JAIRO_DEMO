@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Space Evaders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Emoji Space Evaders</h1>
+        <div class="game-info">
+            <p>Score: <span id="score">0</span></p>
+            <p>Level: <span id="level">1</span></p>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div id="highScoreModal" class="modal">
+            <div class="modal-content">
+                <h2>New High Score!</h2>
+                <p>Time: <span id="finalTime"></span></p>
+                <input type="text" id="playerName" placeholder="Enter your name">
+                <button id="saveScoreBtn">Save Score</button>
+            </div>
+        </div>
+        <div id="highScores" class="high-scores">
+            <h2>High Scores</h2>
+            <ul id="highScoreList"></ul>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
