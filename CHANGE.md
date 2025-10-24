@@ -154,3 +154,24 @@ The user has provided console errors indicating that the `AudioContext` from Ton
 fix: Resume AudioContext on user gesture
 
 Fixes an issue where audio would not play due to browser auto-play policies. The AudioContext is now started after the first user click on the page.
+
+## Date: 2025-10-24T12:35:00Z
+**Requestor:** jasmoone
+**Prompt:** Gameplay does not work on an iPhone. Please fix this.
+
+**Reasoning:**
+The user is reporting that the game is not working on iPhone. A likely cause is that the audio context is not being started correctly on iOS devices, which have strict auto-play policies. The previous fix only listened for a `click` event, which may not be sufficient for touch devices. This change adds a `touchstart` event listener to ensure the audio context is started on touch-based devices like iPhones.
+
+**Changed:**
+- Updated the version number in `index.html`.
+- In `game.js`, added a `touchstart` event listener to the body to start the `AudioContext` on touch devices. The `click` listener is kept for desktop compatibility. Both listeners are removed after the first interaction.
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+fix: Improve iOS compatibility for audio
+
+Adds a 'touchstart' event listener to ensure the AudioContext is properly initialized on iOS devices, which require a user gesture to start audio.

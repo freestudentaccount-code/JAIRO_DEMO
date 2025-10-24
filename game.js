@@ -57,12 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let audioStarted = false;
-    document.body.addEventListener('click', () => {
+    function startAudio() {
         if (!audioStarted) {
             Tone.start();
             audioStarted = true;
         }
-    }, { once: true });
+        document.body.removeEventListener('touchstart', startAudio);
+        document.body.removeEventListener('click', startAudio);
+    }
+    document.body.addEventListener('touchstart', startAudio);
+    document.body.addEventListener('click', startAudio);
 
     let game = {
         paused: false,
