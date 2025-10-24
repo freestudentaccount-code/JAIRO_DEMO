@@ -269,3 +269,28 @@ The user wants a dedicated start button that says "Kick here to start game" befo
 feat: Add animated kick start button with Hola greeting
 
 Adds a colorful animated "Kick here to start game" button that plays the Spanish "Hola" greeting when clicked to begin the game.
+
+## Date: 2025-10-24T13:00:00Z
+**Requestor:** jasmoone
+**Prompt:** Include a welcoming message in spanish. "Hello. This is my arcade game. Please enjoy."
+
+**Reasoning:**
+The user wants to add a welcoming message in Spanish on the start screen. This provides a more personal and welcoming introduction to the game. The message appears both visually on the screen and is spoken aloud when the game starts.
+
+**Changed:**
+- Updated version number to v1.1.2 in `index.html`
+- In `index.html`, added a welcome message div with Spanish text and English translation
+- In `style.css`, added styling for the welcome message with glowing text effects
+- In `game.js`, updated the speech synthesis to speak the full welcome message in Spanish
+- Modified the start screen layout to accommodate both the message and the kick button
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\style.css`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: Add Spanish welcome message to start screen
+
+Displays and speaks a welcoming message in Spanish: "Hola. Este es mi juego de arcade. Por favor disfruta." with English translation below.

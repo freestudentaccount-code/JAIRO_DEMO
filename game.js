@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playWelcomeSound() {
-        const utterance = new SpeechSynthesisUtterance("Hola");
+        const utterance = new SpeechSynthesisUtterance("Hola. Este es mi juego de arcade. Por favor disfruta.");
         utterance.lang = 'es-ES'; // Spanish language
         utterance.rate = 0.8; // Slightly slower for singing effect
         utterance.pitch = 1.2; // Higher pitch for musical quality
