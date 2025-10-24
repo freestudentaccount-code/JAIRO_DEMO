@@ -496,12 +496,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Touch controls
-    touchLeft.addEventListener('touchstart', () => keys.left.pressed = true);
-    touchLeft.addEventListener('touchend', () => keys.left.pressed = false);
-    touchRight.addEventListener('touchstart', () => keys.right.pressed = true);
-    touchRight.addEventListener('touchend', () => keys.right.pressed = false);
-    touchShoot.addEventListener('touchstart', () => {
+    // Touch controls with preventDefault for iOS
+    touchLeft.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keys.left.pressed = true;
+    }, { passive: false });
+    touchLeft.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys.left.pressed = false;
+    }, { passive: false });
+    
+    touchRight.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keys.right.pressed = true;
+    }, { passive: false });
+    touchRight.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys.right.pressed = false;
+    }, { passive: false });
+    
+    touchShoot.addEventListener('touchstart', (e) => {
+        e.preventDefault();
         if (!keys.space.pressed) {
             playLaserSound();
             projectiles.push(new Projectile({
@@ -514,8 +529,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }));
             keys.space.pressed = true;
         }
-    });
-    touchShoot.addEventListener('touchend', () => keys.space.pressed = false);
+    }, { passive: false });
+    touchShoot.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys.space.pressed = false;
+    }, { passive: false });
 
 
     createStars();

@@ -175,3 +175,26 @@ The user is reporting that the game is not working on iPhone. A likely cause is 
 fix: Improve iOS compatibility for audio
 
 Adds a 'touchstart' event listener to ensure the AudioContext is properly initialized on iOS devices, which require a user gesture to start audio.
+
+## Date: 2025-10-24T12:40:00Z
+**Requestor:** jasmoone
+**Prompt:** We still don't have a version working with the iPhone. Here's a screenshot.
+
+**Reasoning:**
+The user provided a screenshot showing the game loaded on iPhone but the controls are not working. The issue is likely that iOS Safari requires specific event handling for touch events. The touch events need to have preventDefault() called to prevent the browser from handling them (like scrolling), and they need to be marked as non-passive events. I've also added visual indicators to the touch controls to make them more obvious on mobile devices.
+
+**Changed:**
+- Updated the version number in `index.html` to v1.0.8.
+- In `game.js`, modified all touch event listeners to call `preventDefault()` and set `{ passive: false }` to ensure iOS Safari properly handles them.
+- In `style.css`, added visual indicators (arrows and rocket emoji) to the touch control areas so users know where to touch.
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\style.css`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+fix: Improve iPhone touch controls with preventDefault
+
+Adds preventDefault() to touch events and visual indicators to fix iOS Safari touch control issues.
