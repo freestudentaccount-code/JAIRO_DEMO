@@ -56,6 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         speechSynthesis.speak(utterance);
     }
 
+    let audioStarted = false;
+    document.body.addEventListener('click', () => {
+        if (!audioStarted) {
+            Tone.start();
+            audioStarted = true;
+        }
+    }, { once: true });
+
     let game = {
         paused: false,
         gameOver: false,
