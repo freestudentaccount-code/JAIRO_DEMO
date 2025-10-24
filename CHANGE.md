@@ -198,3 +198,26 @@ The user provided a screenshot showing the game loaded on iPhone but the control
 fix: Improve iPhone touch controls with preventDefault
 
 Adds preventDefault() to touch events and visual indicators to fix iOS Safari touch control issues.
+
+## Date: 2025-10-24T12:45:00Z
+**Requestor:** jasmoone
+**Prompt:** Create a complete and detailed README file for someone to understand the game and who the authors are.
+
+**Reasoning:**
+The user requested a comprehensive README file to document the game, its features, controls, and authorship. This is essential for any public repository to help users understand what the project is, how to use it, and who created it. A good README also helps with project maintenance and community contributions.
+
+**Changed:**
+- Created a detailed `README.md` file with comprehensive game documentation
+- Updated version number to v1.0.9 in `index.html`
+- Documented all game features, controls, technical details, and troubleshooting information
+- Included author credits and acknowledgments
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\README.md` (new file)
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+docs: Add comprehensive README documentation
+
+Creates detailed documentation covering game features, controls, technical details, installation, and troubleshooting. Includes author credits and project information.
