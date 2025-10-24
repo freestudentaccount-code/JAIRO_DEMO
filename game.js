@@ -332,21 +332,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
             const lowestHighScore = highScores.length < 5 ? 0 : highScores[highScores.length - 1].score;
 
-            if (game.score > lowestHighScore) {
+            if (game.score > 0 && game.score >= lowestHighScore) {
                 highScoreModal.style.display = 'block';
             } else {
                 gameOverModal.style.display = 'block';
             }
         }, 1000);
-    }
-
-    function checkHighScore(score) {
-        const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-        const lowestHighScore = highScores.length < 5 ? 0 : highScores[highScores.length - 1].score;
-
-        if (score > lowestHighScore) {
-            highScoreModal.style.display = 'block';
-        }
     }
 
     function saveHighScore() {

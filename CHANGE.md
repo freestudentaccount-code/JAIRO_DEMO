@@ -47,3 +47,23 @@ This change adds a "Play Again" button and touch controls for mobile devices. Th
 feat: Add play again button and mobile touch controls
 
 Adds a "Play Again" button to the game over screen and after saving a high score. Implements touch controls for left, right, and shoot to enable gameplay on mobile devices.
+
+## Date: 2025-10-24T12:10:00Z
+**Requestor:** jasmoone
+**Prompt:** I don't see a playagain option. I did reload and tried flushing My cash.
+
+**Reasoning:**
+The user is reporting that the "Play Again" option is not appearing. The previous logic would only show the high score modal if the score was greater than the lowest high score, but it didn't handle the case where the score was not a high score. This change ensures that if the score is not a high score, the "Game Over" modal with the "Play Again" button is displayed. It also ensures that the high score modal is only shown for scores greater than 0.
+
+**Changed:**
+- Modified the `endGame` function in `game.js` to correctly display either the high score modal or the game over modal.
+- Removed the now redundant `checkHighScore` function.
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+fix: Ensure play again option is always available
+
+Fixes a bug where the "Play Again" button would not appear if the player did not achieve a high score. The game over screen is now correctly displayed when the score is not a high score.
