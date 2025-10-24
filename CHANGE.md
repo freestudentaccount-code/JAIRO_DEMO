@@ -221,3 +221,26 @@ The user requested a comprehensive README file to document the game, its feature
 docs: Add comprehensive README documentation
 
 Creates detailed documentation covering game features, controls, technical details, installation, and troubleshooting. Includes author credits and project information.
+
+## Date: 2025-10-24T12:50:00Z
+**Requestor:** jasmoone
+**Prompt:** When the game starts. Sing hello in Spanish.
+
+**Reasoning:**
+The user wants a Spanish greeting when the game starts. This adds a welcoming touch to the game experience. Using the Web Speech API, I'm adding a "Hola" greeting in Spanish that plays when the user first interacts with the game to start the audio context.
+
+**Changed:**
+- Updated version number to v1.1.0 in `index.html`
+- In `game.js`, added a `playWelcomeSound()` function that speaks "Hola" in Spanish with musical qualities (slower rate, higher pitch)
+- Modified the `startAudio()` function to play the welcome sound on first user interaction
+- Added a `gameStarted` flag to ensure the greeting only plays once
+
+**Modified Files:**
+- `d:\Development\git_source\Jairo_Demo\index.html`
+- `d:\Development\git_source\Jairo_Demo\game.js`
+- `d:\Development\git_source\Jairo_Demo\CHANGE.md`
+
+**GitHub Commit Summary:**
+feat: Add Spanish "Hola" greeting on game start
+
+Plays a Spanish "Hola" greeting with musical qualities when the game is first started by the user.

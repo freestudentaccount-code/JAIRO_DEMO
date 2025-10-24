@@ -56,11 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
         speechSynthesis.speak(utterance);
     }
 
+    function playWelcomeSound() {
+        const utterance = new SpeechSynthesisUtterance("Hola");
+        utterance.lang = 'es-ES'; // Spanish language
+        utterance.rate = 0.8; // Slightly slower for singing effect
+        utterance.pitch = 1.2; // Higher pitch for musical quality
+        speechSynthesis.speak(utterance);
+    }
+
     let audioStarted = false;
+    let gameStarted = false;
     function startAudio() {
         if (!audioStarted) {
             Tone.start();
             audioStarted = true;
+        }
+        if (!gameStarted) {
+            setTimeout(() => playWelcomeSound(), 500); // Small delay for better timing
+            gameStarted = true;
         }
         document.body.removeEventListener('touchstart', startAudio);
         document.body.removeEventListener('click', startAudio);
